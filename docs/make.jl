@@ -9,9 +9,9 @@ makedocs(;
     repo="https://github.com/sjrodahl/MeshAlgorithms.jl/blob/{commit}{path}#L{line}",
     sitename="MeshAlgorithms.jl",
     authors="Sondre Rodahl",
-    assets=[],
+#   assets=[],
 )
 
-deploydocs(;
-    repo="github.com/sjrodahl/MeshAlgorithms.jl",
-)
+#deploydocs(;
+#    repo="github.com/sjrodahl/MeshAlgorithms.jl",
+#)

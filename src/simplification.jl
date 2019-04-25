@@ -3,7 +3,12 @@ struct Mesh
     edges::Set{Tuple{Int, Int}}
 end
 
+"""
+    distance(v1::Point, v2::Point)
 
+Calculate the distance beteen two points
+
+"""
 function distance(v1::Point, v2::Point)
     return sqrt(reduce(+, map((x,y)->(y-x)^2, v1, v2)))
 end
