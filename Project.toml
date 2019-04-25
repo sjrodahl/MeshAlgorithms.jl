@@ -1,0 +1,10 @@
+name = "MeshAlgorithms"
+uuid = "bc81d523-866a-5e0a-8337-3e153e884327"
+authors = ["Sondre Rodahl <son.rodahl@gmail.com>"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
