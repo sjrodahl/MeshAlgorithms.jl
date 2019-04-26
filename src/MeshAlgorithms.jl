@@ -1,11 +1,13 @@
 module MeshAlgorithms
 
 using GeometryTypes
+using StaticArrays
 
 export 
     Mesh,
     convert_from_homogenous,
-    distance
+    distance,
+    fundamental_error_quadric
 
 
 include("simplification.jl")

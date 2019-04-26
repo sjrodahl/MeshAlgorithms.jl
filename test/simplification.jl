@@ -30,4 +30,23 @@ end
 
 end
     
-
+@testset "Error Quadrics" begin
+    p = SVector{4}([1,2,3,0])
+    k_p = fundamental_error_quadric(p)
+    @test k_p[1,1] == p[1]^2
+    @test k_p[1,2] == p[1]*p[2]
+    @test k_p[1,3] == p[1]*p[3]
+    @test k_p[1,4] == p[1]*p[4]
+    @test k_p[2,1] == p[1]*p[2]
+    @test k_p[2,2] == p[2]^2
+    @test k_p[2,3] == p[2]*p[3]
+    @test k_p[2,4] == p[2]*p[4]
+    @test k_p[3,1] == p[1]*p[3]
+    @test k_p[3,2] == p[2]*p[3]
+    @test k_p[3,3] == p[3]^2
+    @test k_p[3,4] == p[3]*p[4]
+    @test k_p[4,1] == p[1]*p[4]
+    @test k_p[4,2] == p[2]*p[4]
+    @test k_p[4,3] == p[3]*p[4]
+    @test k_p[4,4] == p[4]^2
+end

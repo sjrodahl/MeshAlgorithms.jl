@@ -45,3 +45,10 @@ function convert_from_homogenous(mesh::HomogenousMesh)
     return Mesh(mesh.vertices, edges)
 end
  
+
+function fundamental_error_quadric(p::SVector{4,T}) where {T<:Real}
+    return [p[1]^2 p[1]*p[2] p[1]*p[3] p[1]*p[4];
+            p[1]*p[2] p[2]^2 p[2]*p[3] p[2]*p[4];
+            p[1]*p[3] p[2]*p[3] p[3]^2 p[3]*p[4];
+            p[1]*p[4] p[2]*p[4] p[3]*p[4] p[4]^2] 
+end
