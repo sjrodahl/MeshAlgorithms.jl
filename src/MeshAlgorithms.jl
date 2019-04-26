@@ -2,6 +2,7 @@ module MeshAlgorithms
 
 using GeometryTypes
 using StaticArrays
+using LinearAlgebra
 
 export 
     Mesh,

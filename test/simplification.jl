@@ -12,7 +12,7 @@ end
 @testset "Pair selection" begin
     vertices = [v1, v2, v3, v4]
     edges = Set([(1,2), (1,3), (2,3)])
-    mesh = MeshAlgorithms.Mesh(vertices, edges)
+    mesh = MeshAlgorithms.Mesh(vertices, edges, [])
     pairs = MeshAlgorithms.select_valid_pairs(mesh, 1)
     @test pairs == Set([(1,2), (1,3), (2,3), (2, 4)])
 end
@@ -24,7 +24,7 @@ end
             vertices = [v1, v2, v3],
             faces = [f1],
             normals = [normal, normal, normal])
-    expected_mesh = Mesh([v1,v2,v3], Set([(1,2), (1,3), (2,3)]))
+    expected_mesh = Mesh([v1,v2,v3], Set([(1,2), (1,3), (2,3)]), [])
     @test convert_from_homogenous(test_hm).vertices == expected_mesh.vertices
     @test convert_from_homogenous(test_hm).edges == expected_mesh.edges
 
@@ -49,4 +49,16 @@ end
     @test k_p[4,2] == p[2]*p[4]
     @test k_p[4,3] == p[3]*p[4]
     @test k_p[4,4] == p[4]^2
+end
+
+sq_sum(v::Vector) = reduce(+, map(x->x^2, v))
+@testset "Normalize" begin
+    n = [Vector([1,2,3]), Vector([0,3,4]), Vector([1,0,0]), Vector([0,0,0])]
+    @test MeshAlgorithms.normalize(n[1]) == [1/sqrt(14), 2/sqrt(14), 3/sqrt(14)]
+    @test MeshAlgorithms.normalize(n[2]) == [0,3/5, 4/5]
+    @test MeshAlgorithms.normalize(n[3]) == [1,0,0]
+    @test_throws ErrorException MeshAlgorithms.normalize(n[4])
+    @testset "All length 1 $a $b $c" for a in -5.0:0.5:5, b in -5:0.5:5, c in 0.1:0.2:5
+        @test sq_sum(MeshAlgorithms.normalize(Vector([a,b,c]))) ≈ 1.0
+    end
 end
